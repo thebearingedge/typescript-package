@@ -1,0 +1,148 @@
+{
+  "name": "typescript-package",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "description": "Basic TypeScript boilerplate.",
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts",
+    "!dist/**/*.test.*"
+  ],
+  "scripts": {
+    "test": "mocha",
+    "tdd": "mocha -w -R min",
+    "cover": "nyc mocha",
+    "lint": "eslint --ext .ts .",
+    "prepack": "rimraf dist && tsc"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint --fix"
+    ]
+  },
+  "mocha": {
+    "extension": [
+      "ts"
+    ],
+    "spec": "src/**/*.test.ts",
+    "require": [
+      "ts-node/register"
+    ]
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "**/*.test.ts"
+    ],
+    "reporter": [
+      "lcov",
+      "html",
+      "text-summary"
+    ],
+    "cache": false,
+    "temp-dir": "coverage/.nyc_output/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebearingedge/typescript-package.git"
+  },
+  "keywords": [],
+  "author": "Tim Davis <contact@timdav.is>",
+  "license": "MIT",
+  "peerDependencies": {
+    "pg": "8.x"
+  },
+  "optionalDependencies": {
+    "@types/pg": "7.14.4"
+  },
+  "devDependencies": {
+    "@types/chai": "4.2.12",
+    "@types/mocha": "8.0.2",
+    "@types/node": "14.0.27",
+    "@typescript-eslint/eslint-plugin": "3.9.0",
+    "@typescript-eslint/parser": "3.9.0",
+    "chai": "4.2.0",
+    "coveralls": "3.1.0",
+    "eslint": "7.7.0",
+    "eslint-config-standard-with-typescript": "18.0.2",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.1",
+    "husky": "4.2.5",
+    "lint-staged": "10.2.11",
+    "mocha": "8.1.1",
+    "nyc": "15.1.0",
+    "promise-retry": "2.0.1",
+    "rimraf": "3.0.2",
+    "ts-node": "8.10.2",
+    "typescript": "3.9.7"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "tsconfig.json"
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "standard-with-typescript"
+    ],
+    "rules": {
+      "padded-blocks": [
+        "error",
+        {
+          "classes": "always"
+        }
+      ],
+      "@typescript-eslint/prefer-function-type": "off",
+      "@typescript-eslint/promise-function-async": "off",
+      "@typescript-eslint/method-signature-style": [
+        "error",
+        "method"
+      ],
+      "@typescript-eslint/consistent-type-definitions": [
+        "error",
+        "type"
+      ],
+      "@typescript-eslint/space-before-function-paren": [
+        "error",
+        {
+          "anonymous": "always",
+          "named": "never",
+          "asyncArrow": "always"
+        }
+      ]
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.test.ts"
+        ],
+        "rules": {
+          "@typescript-eslint/no-non-null-assertion": "off"
+        }
+      }
+    ]
+  },
+  "eslintIgnore": [
+    "dist/",
+    "coverage/"
+  ],
+  "bugs": {
+    "url": "https://github.com/thebearingedge/typescript-package/issues"
+  },
+  "homepage": "https://github.com/thebearingedge/typescript-package#readme"
+}
